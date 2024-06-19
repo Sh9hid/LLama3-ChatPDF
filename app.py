@@ -1,3 +1,11 @@
+# these three lines swap the stdlib sqlite3 lib with the pysqlite3 package
+__import__('pysqlite3')
+# import pysqlite3
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
+import sqlite3
+
 from langchain.chains import RetrievalQA
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.callbacks.manager import CallbackManager
@@ -12,32 +20,62 @@ import streamlit as st
 import os
 import time
 
+
+# Create directories if they d
 if not os.path.exists('files'):
     os.mkdir('files')
 
-if not os.path.exists('jj'):
-    os.mkdir('jj')
+if not os.path.exists('db'):
+    os.mkdir('db')
 
+
+# Initialize template as a session state 
 if 'template' not in st.session_state:
-    st.session_state.template = """You are a knowledgeable chatbot, here to help with questions of the user. Your tone should be professional and informative.
+
+    # Set value of template key
+    st.session_state.template = """
+    
+    You are a knowledgeable chatbot, here to help with questions of the user. 
+    Your tone should be polite, professional and informative.
 
     Context: {context}
     History: {history}
 
     User: {question}
-    Chatbot:"""
+    Chatbot:
+
+    """
+
+# Initialize prompt as a session state
 if 'prompt' not in st.session_state:
+
+    # Set value of prompt key to PromptTemplate from langchain.prompts
     st.session_state.prompt = PromptTemplate(
+        
+        # Set input variables 
         input_variables=["history", "context", "question"],
+        
+        # Set template to the session state, template 
         template=st.session_state.template,
     )
+
+# Initialize memory as a session state
 if 'memory' not in st.session_state:
+
+    # Set value of memory key to ConversationBufferMemory from langchain.memory
     st.session_state.memory = ConversationBufferMemory(
+
+        # Set params from input variables list
         memory_key="history",
         return_messages=True,
         input_key="question")
+    
+
+# Initialize vectorstore
 if 'vectorstore' not in st.session_state:
-    st.session_state.vectorstore = Chroma(persist_directory='jj',
+
+    # Set value of vectorstore key to Chroma 
+    st.session_state.vectorstore = Chroma(persist_directory='db',
                                           embedding_function=OllamaEmbeddings(base_url='http://localhost:11434',
                                                                               model="llama3")
                                           )
