@@ -40,6 +40,7 @@ This application allows you to chat with your PDF documents locally. It's built 
 - Add OpenAI API key input to the app, and fix the deployment.
 - Add modularity.
 - Enhance readability.
+- Model select feature. Instead, of hard coding Llama3. Change name to something more meaningful.
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request for review.
 
