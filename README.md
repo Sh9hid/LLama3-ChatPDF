@@ -34,7 +34,10 @@ This application allows you to chat with your PDF documents locally. It's built 
 
 3. **Usage**
    ```bash
-   streamlit run app.py
+   streamlit run app.
+
+## Roadmap
+Add OpenAI API key input to the app, and fix the deployment.
 
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request for review.
