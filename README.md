@@ -1,5 +1,5 @@
 # LLama3-ChatPDF 
-A local PDF Chat Application wity LLama3, Langchain, Ollama, and Streamlit. Naming things are hard and for the sake of simplicity.
+A local RAG application wity LLama3, Langchain, Ollama, and Streamlit. Naming things are hard and for the sake of simplicity.
 ## Chat with Your PDFs Locally
 ![App Demo](assets/demo.gif)
 
