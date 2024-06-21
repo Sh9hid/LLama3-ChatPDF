@@ -1,4 +1,4 @@
-# these three lines swap the stdlib sqlite3 lib with the pysqlite3 package
+# these three lines swap the stdlib sqlite3 lib with the pysqlite3 package for Chromdb
 __import__('pysqlite3')
 # import pysqlite3
 import sys
