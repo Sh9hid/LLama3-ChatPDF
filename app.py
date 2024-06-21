@@ -21,7 +21,7 @@ import os
 import time
 
 
-# Create directories if they d
+# Create directories if they don't exist
 if not os.path.exists('files'):
     os.mkdir('files')
 
